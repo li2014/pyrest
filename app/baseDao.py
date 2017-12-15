@@ -1,4 +1,4 @@
-import dbhelper
+from app import dbhelper
 
 
 class BaseDao(object):

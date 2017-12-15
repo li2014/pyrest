@@ -1,8 +1,10 @@
+import json
+
 from flask import Flask
 from flask import request, jsonify
-import json
 from werkzeug.routing import BaseConverter
-from baseDao import BaseDao
+
+from app.baseDao import BaseDao
 
 
 def check_json_format(raw_msg):
