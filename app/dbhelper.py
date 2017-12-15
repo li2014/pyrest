@@ -1,3 +1,10 @@
+# -*- coding: utf-8 -*-
+# @Time    : 2017/12/15 12:05
+# @Author  : Ayan
+# @Email   : hbally
+# @File    : __init__.py
+# @Software: PyCharm
+
 import pymysql
 import json
 
@@ -78,7 +85,7 @@ def select(tablename, params={}, fields=[]):
             pvs.append(params[al])
         where += ' where ' + ' and '.join(ps)
 
-    rs = exec_sql(sql+where, pvs, True)
+    rs = exec_sql(sql + where, pvs, True)
     print('Result: ', rs)
     if rs[0]:
         return {"code": 200, "rows": rs[1], "total": rs[2]}
@@ -86,4 +93,8 @@ def select(tablename, params={}, fields=[]):
         return {"code": rs[1].args[0], "error": rs[1].args[1], "total": rs[2]}
 
 
-# select('member', {'username': 'admin', "status": 1})
+if __name__ == "__main__":
+    #{'id':'20'}为筛选条件
+    #['provinceid','province'] 检出数据item
+    result = select('provinces',{'id':'20'},['provinceid','province'])
+    print('JSON:', json.dumps(result))
